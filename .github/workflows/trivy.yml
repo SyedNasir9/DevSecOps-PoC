@@ -18,4 +18,4 @@ jobs:
       # Run Trivy filesystem scan on the entire repo
       - name: Run Trivy Repo Scan
         run: |
-          trivy fs --security-checks vuln,secret .
+          trivy fs --scanners vuln,secret --exit-code 1 --severity HIGH,CRITICAL .
