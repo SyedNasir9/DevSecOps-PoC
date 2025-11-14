@@ -9,13 +9,13 @@ jobs:
       # Checkout the repo
       - uses: actions/checkout@v4
 
-      # Install Trivy CLI (latest version)
+      # Install Trivy and add to PATH
       - name: Install Trivy
         run: |
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
-          trivy --version
+          echo "$PWD/bin" >> $GITHUB_PATH
 
-      # Run Trivy vulnerability scan on the entire repo
+      # Run Trivy filesystem scan on the entire repo
       - name: Run Trivy Repo Scan
         run: |
-          trivy fs --security-checks vuln,secret . 
+          trivy fs --security-checks vuln,secret .
