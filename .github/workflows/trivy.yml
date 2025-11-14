@@ -6,10 +6,16 @@ jobs:
   trivy-scan:
     runs-on: ubuntu-latest
     steps:
+      # Checkout the repo
       - uses: actions/checkout@v4
-      - name: Run Trivy scan
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: 'backend:latest'
-          format: 'table'
-        
+
+      # Install Trivy CLI (latest version)
+      - name: Install Trivy
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
+          trivy --version
+
+      # Run Trivy vulnerability scan on the entire repo
+      - name: Run Trivy Repo Scan
+        run: |
+          trivy fs --security-checks vuln,secret . 
