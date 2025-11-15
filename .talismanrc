@@ -1,4 +1,4 @@
 fileignoreconfig:
 - filename: .github/workflows/frontend.yml
-  checksum: 53a174fe520a00f560e78803fe2350c4d073336bed75249afdbc290a3c438916
+  checksum: d38199500c3f8c4bd08736eb20f2f34a52059e87be4298b1cf9c3469efc676b3
 version: ""
