@@ -29,10 +29,13 @@ jobs:
       # 3) SonarQube scan
       - name: SonarQube Scan
         run: |
-          sonar-scanner \
+          docker run --rm \
+            -v "${{ github.workspace }}:/usr/src" \
+            sonarsource/sonar-scanner-cli \
             -Dsonar.projectKey=frontend-project \
             -Dsonar.projectName=Frontend \
-            -Dsonar.sources=./frontend \
+            -Dsonar.sources=/usr/src/frontend \
             -Dsonar.host.url=http://host.docker.internal:9000 \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN}}
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
 
